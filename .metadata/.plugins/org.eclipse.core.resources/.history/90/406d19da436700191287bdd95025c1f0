@@ -1,0 +1,123 @@
+package com.accounts.accounts.serviceImpl;
+
+import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.accounts.accounts.dao.AccountDAO;
+import com.accounts.accounts.model.Account;
+import com.accounts.accounts.service.AccountService;
+
+@Service
+public class AccountServiceImpl implements AccountService {
+
+	@Autowired
+	private AccountDAO accountDAO;
+	
+
+	
+	@Override
+	public boolean addAccount(Account account) {
+		return accountDAO.addAccount(account);		
+	}
+
+	@Override
+	public List<Account> getListOfAccount() {
+		
+		
+		// TODO Auto-generated method stub
+		return accountDAO.getListOfAccount();
+	}
+
+	@Override
+	public void updateAccount(Account account) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteAccount(String account_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Account getAccountDetailsByName(Long account_id) {
+		  Account account = accountDAO.getAccountDetailsByName(account_id);
+
+		// TODO Auto-generated method stub
+		return account;
+	}
+
+	@Override
+	public Double getAllBalanceAmount() {
+
+		double totalBalance=0.0;
+		double initialBalance=0.0;
+		List<Account> listOfAccount=accountDAO.getListOfAccount();
+		for(Account account:listOfAccount) {
+			initialBalance=totalBalance+account.getBalance();
+			totalBalance=initialBalance;
+			//System.out.println("totalBalance"+totalBalance);
+		}
+		System.out.println("totalBalance"+totalBalance);
+		return totalBalance;
+		}
+
+	@Override
+	public  List<Account> deductTaxFromEachAccount(Double deductTaxAmount) {
+		
+		//double percentage=12.25;
+	//System.out.println("Please Enter a Percentage Amount");
+	
+	//Scanner scanner = new Scanner(System.in);
+	//System.out.println("Please Enter a Percentage Amount");
+
+	//double percentage=scanner.nextDouble();
+	double newAmountAfterDeduction=0.0;
+	
+	List<Account> taxDeductedList=new ArrayList<Account>();
+	List<Account> listOfAccount=accountDAO.getListOfAccount();
+	for(Account account:listOfAccount) {
+		Account account1=new Account();
+		newAmountAfterDeduction=account.getBalance()-((deductTaxAmount/100)*account.getBalance());
+		account1.setBalance(newAmountAfterDeduction);
+		taxDeductedList.add(account1);
+	}
+   for (Account account:taxDeductedList) {
+	   accountDAO.updateAccount(account.getAccountId(),account);
+   }	
+    // TODO Auto-generated method stub
+		return listOfAccount;
+	}
+
+	@Override
+	public Double getLowestAccountBalance() {
+		
+		//List<Account> list=new ArrayList<Account>();
+		List<Account> listOfAccounts=accountDAO.getListOfAccount();
+        double lowest=0.0;
+		if(listOfAccounts.isEmpty()) {
+			System.out.println("Getting nothing");
+			return lowest;
+		}
+		for(Account account: listOfAccounts) {
+		if(lowest > account.getBalance()) {
+			System.out.println("Checking");
+			System.out.println(lowest);
+			System.out.println(account.getBalance());
+			lowest=account.getBalance();
+		}	
+	     System.out.println("Lowest Balance:" +lowest);
+// Chala kar dek
+		}
+		return lowest;
+		
+		// TODO Auto-generated method stub
+	}
+
+}

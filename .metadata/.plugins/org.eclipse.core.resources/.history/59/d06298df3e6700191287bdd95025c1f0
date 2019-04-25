@@ -1,0 +1,17 @@
+package com.accounts.accounts.daoImpl;
+
+import com.accounts.accounts.dao.SecretDAO;
+import com.accounts.accounts.model.Secret;
+
+public class SecretDAOImpl implements SecretDAO {
+
+	@Override
+	public Secret addUsernameAndPassword(String Username, Integer password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+
+}

@@ -1,0 +1,25 @@
+package com.accounts.accounts.serviceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.accounts.accounts.model.Secret;
+import com.accounts.accounts.service.SecretService;
+
+@Service
+public class SecretServiceImpl implements SecretService
+
+{
+
+	@Override
+	public Secret addUsernameAndPassword(Secret Username, Integer password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+
+}

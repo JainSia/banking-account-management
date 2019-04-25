@@ -1,0 +1,9 @@
+package com.accounts.accounts.dao;
+
+import com.accounts.accounts.model.Account;
+
+public interface AccountDAO {
+
+	public void addAccount(Account account);
+
+}

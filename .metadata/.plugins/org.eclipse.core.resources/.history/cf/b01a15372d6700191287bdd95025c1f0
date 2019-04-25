@@ -1,0 +1,9 @@
+package com.accounts.accounts.dao;
+
+import com.accounts.accounts.model.Secret;
+
+public interface SecretDAO {
+
+	
+	public Secret secretDAO(String Username, Integer password);
+}

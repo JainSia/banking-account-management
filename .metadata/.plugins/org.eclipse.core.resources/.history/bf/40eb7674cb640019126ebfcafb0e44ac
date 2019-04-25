@@ -1,0 +1,5 @@
+package com.accounts.accounts.value;
+
+public class secret {
+
+}

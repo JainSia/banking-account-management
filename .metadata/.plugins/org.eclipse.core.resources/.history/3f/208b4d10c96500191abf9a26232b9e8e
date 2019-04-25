@@ -1,0 +1,24 @@
+package com.accounts.accounts;
+
+import com.accounts.accounts.model.Account;
+import com.accounts.accounts.service.AccountService;
+import com.accounts.accounts.serviceImpl.AccountServiceImpl;
+
+
+public class testDAO {
+
+	
+	public static void main(String gg[]) {
+		
+	   Account account=new Account();
+       AccountService accountService=new AccountServiceImpl();
+       
+       System.out.println("Add Account Method call");
+       
+       account.setName("Vaishnavi");
+       account.setBalance(34.09);
+
+       accountService.addAccount(account);
+       System.out.println("Added Successfully");
+	}
+}

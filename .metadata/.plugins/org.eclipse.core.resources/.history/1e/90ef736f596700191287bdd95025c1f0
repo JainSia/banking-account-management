@@ -1,0 +1,93 @@
+package com.accounts.accounts.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.accounts.accounts.model.Account;
+import com.accounts.accounts.service.AccountService;
+import com.accounts.accounts.service.SecretService;
+
+@RestController
+//@RequestMapping("/accounts")
+public class AccountController {
+
+	@Autowired
+	private AccountService accountService;
+	@Autowired
+	private SecretService secretService;
+	
+	
+	@RequestMapping("/")
+	public String hello() {
+		/*
+		 * Account account=new Account(); account.setName("saloni");
+		 * account.setBalance(234.67); accountService.addAccount(account);
+		 * System.out.println("Account Added Successfully");
+		 */	
+		return "API is Working !!!";
+	}
+	
+	@RequestMapping(value="/services/addAccount",method=RequestMethod.POST)
+	public boolean addAccount(@ModelAttribute Account account) {
+		//System.out.println("Add Account Method");
+	    //return accountService.addAccount(account);
+		System.out.println("Add Account Method");
+		boolean isSuccess = accountService.addAccount(account);
+		if(isSuccess) {
+			//secretService=new SecretService();
+			return secretService.addRegister(account);
+		}
+		return false;
+	}
+	
+	@RequestMapping(value="/services/getAll",method=RequestMethod.GET)
+	public List<Account> getList(){
+			System.out.println("List of all the accounts");
+			return accountService.getListOfAccount();
+
+		}
+	
+	/*
+	 * @RequestMapping(value="/update",method=RequestMethod.POST) public void
+	 * updateAccount(@ModelAttribute Account account){
+	 * System.out.println("This is my update method");
+	 * accountService.updateAccount(account); }
+	 * 
+	 * @RequestMapping(value="/delete/{account_id}",method=RequestMethod.GET) public
+	 * void deleteAccount(@PathVariable String account_id) {
+	 * System.out.println("This is my delete by account id method");
+	 * accountService.deleteAccount(account_id); }
+	 */	
+	
+	@RequestMapping(value="/getAccountDetailsByName/{account_id}",method=RequestMethod.GET)
+	public Account getAccountDetailsByName(@PathVariable Long account_id)
+	{		
+		System.out.println("Get the total sum of balance");
+		return accountService.getAccountDetailsByName(account_id);
+
+    }
+	
+
+	@RequestMapping(value="/services/deductTaxFromEachAccount",method=RequestMethod.PUT)
+	public List<Account> deductTaxFromEachAccount(@PathVariable Double deductTaxAmount){
+			System.out.println("Subtract a percentage amount from each account");
+			return accountService.deductTaxFromEachAccount(deductTaxAmount);
+
+		}
+	
+	
+	@RequestMapping(value="/services/getLowestAccountBalance",method=RequestMethod.GET)
+	public Double getLowestAccountBalance(){
+			System.out.println("Get Lowest Balance of the Account");
+			return accountService.getLowestAccountBalance();
+
+		}
+	
+}

@@ -1,0 +1,9 @@
+package com.accounts.accounts.service;
+
+import com.accounts.accounts.model.Account;
+
+public interface AccountService {
+
+public void addAccount(Account account);
+
+}

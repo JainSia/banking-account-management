@@ -1,0 +1,14 @@
+package com.accounts.accounts.serviceImpl;
+
+@Service
+public class SecretServiceImpl implements SecretService
+
+{
+	
+	
+	
+	
+	
+	
+
+}

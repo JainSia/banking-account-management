@@ -1,0 +1,44 @@
+package com.accounts.accounts.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="secrets")
+public class Secret {
+	
+	@Id
+    @Column(name="Secret_Id",nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+    private int secretId;
+	
+	@Column(name="Password",nullable=false)
+	private String password;
+	
+	
+	public Secret() {
+    }
+	public Secret(String password) {
+        this.password = password;
+    }         
+    
+        
+	
+	public int getSecretId() {
+		return secretId;
+	}
+	public void setSecretId(int secretId) {
+		this.secretId = secretId;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+    
+}

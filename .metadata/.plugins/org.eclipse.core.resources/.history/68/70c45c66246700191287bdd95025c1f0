@@ -1,0 +1,5 @@
+package com.accounts.accounts.controller;
+
+public class SecretController {
+
+}

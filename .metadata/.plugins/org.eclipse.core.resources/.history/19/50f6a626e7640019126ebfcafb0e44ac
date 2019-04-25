@@ -1,0 +1,58 @@
+package com.accounts.accounts.value;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="accounts_table")
+public class account {
+	@Id
+    @Column(name="Id",nullable=false,unique=true)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private String accountId;
+	private secret secretkey;
+	
+	
+	public account() {
+    }
+             
+	/*
+	 * public account(String name, Double balance) { this.name = name; this.balance
+	 * = balance; }
+	 */
+	public String getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public Double getBalance() {
+		return balance;
+	}
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+
+	
+	
+	
+	@Column(name="Name",nullable=false)
+	private String name;
+    @Column(name="Balance",nullable=false)
+	private Double balance;
+        
+}

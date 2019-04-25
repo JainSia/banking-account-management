@@ -1,0 +1,19 @@
+package com.accounts.accounts.service;
+
+import java.util.List;
+
+import com.accounts.accounts.model.Account;
+
+public interface AccountService
+{
+public boolean addAccount(Account account);
+public List<Account> getListOfAccount();
+public void updateAccount(Account account);
+public void deleteAccount(String account_id);
+public Account getAccountDetailsByName(Long account_id);
+public Double getAllBalanceAmount();
+public List<Account> deductTaxFromEachAccount(Double deductTaxAmount);
+public Double getLowestAccountBalance();
+
+
+}
